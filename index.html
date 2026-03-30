@@ -3,136 +3,507 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAPI - Links</title>
-    <link rel="icon" type="image/png" href="isolado-colorido.png">
+    <title>CAPI — Centro de Avaliação Psicológica Interlagos</title>
+    <link rel="icon" type="image/png" href="logo-vertical.png">
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lato:wght@300;400;500&display=swap" rel="stylesheet">
 
-    <!-- Iconify -->
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 
-    <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
     <style>
-        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
-        h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --gold:        #c9a55e;
+            --marsala:     #7f1d1d;
+            --brown-dark:  #3a1d0e;
+            --brown-mid:   #6b3f28;
+            --brown-light: #9e7b65;
+            --beige:       #ede0d4;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #ffffff;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page {
+            position: relative;
+            max-width: 430px;
+            margin: 0 auto;
+            padding: 0 22px 56px;
+            z-index: 1;
+        }
+
+        /* ═══════════════════════════════════
+           DECORATIVE GOLD CORNER TRACINGS
+        ═══════════════════════════════════ */
+        .deco-corner {
+            position: absolute;
+            pointer-events: none;
+            z-index: 0;
+            overflow: visible;
+        }
+
+        /* ═══════════════════════════════════
+           HEADER
+        ═══════════════════════════════════ */
+        .header-area {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 46px;
+            padding-bottom: 6px;
+            z-index: 1;
+        }
+
+        /* Photo — centered hero element */
+        .photo-wrap {
+            position: relative;
+            width: 154px;
+            height: 154px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* Outer halo ring */
+        .photo-wrap::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 1px solid rgba(201,165,94,.28);
+        }
+
+        /* Gold border */
+        .photo-wrap::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            box-shadow:
+                0 0 0 1px rgba(201,165,94,.18),
+                0 10px 32px rgba(0,0,0,.18),
+                0 3px 8px  rgba(0,0,0,.12);
+        }
+
+        .photo-wrap img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+
+        /* Logo — floats to the right of center photo */
+        .logo-block {
+            position: absolute;
+            right: 0;
+            top: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 110px;
+        }
+
+        .logo-block img {
+            width: 82px;
+            max-height: 130px;
+            object-fit: contain;
+            opacity: 0.88;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,.10));
+        }
+
+        /* ═══════════════════════════════════
+           TITLE SECTION
+        ═══════════════════════════════════ */
+        .title-section {
+            text-align: center;
+            margin-top: 28px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 34px;
+            font-weight: 600;
+            color: var(--brown-dark);
+            line-height: 1.18;
+            letter-spacing: -.01em;
+            text-shadow: 0 1px 2px rgba(0,0,0,.06);
+        }
+
+        /* ═══════════════════════════════════
+           GOLD ORNAMENT DIVIDER
+        ═══════════════════════════════════ */
+        .ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 13px auto;
+        }
+
+        .orn-line-l { height:1px; width:58px; background: linear-gradient(to right, transparent, var(--gold)); }
+        .orn-line-r { height:1px; width:58px; background: linear-gradient(to left,  transparent, var(--gold)); }
+
+        .orn-center {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .orn-diamond {
+            width: 5px;
+            height: 5px;
+            background: var(--gold);
+            transform: rotate(45deg);
+            border-radius: .5px;
+            box-shadow: 0 0 5px rgba(201,165,94,.5);
+        }
+
+        .orn-dot {
+            width: 3px;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: .55;
+        }
+
+        .tagline {
+            font-size: 13.5px;
+            font-weight: 300;
+            color: var(--brown-light);
+            letter-spacing: .045em;
+        }
+
+        .section-divider { margin: 20px 0 18px; }
+
+        /* ═══════════════════════════════════
+           CTA BUTTON — realistic 3-D marsala
+        ═══════════════════════════════════ */
+        .cta-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 11px;
+            width: 100%;
+            padding: 17px 24px;
+            background: linear-gradient(180deg,
+                #ac3535 0%,
+                #8e2020 42%,
+                #7a1b1b 68%,
+                #6e1717 100%
+            );
+            color: #fff;
+            font-family: 'Lato', sans-serif;
+            font-size: 15.5px;
+            font-weight: 400;
+            letter-spacing: .07em;
+            border-radius: 100px;
+            text-decoration: none;
+            border: 1px solid rgba(0,0,0,.18);
+            border-bottom-color: rgba(0,0,0,.35);
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,.2),
+                inset 0 -2px 0 rgba(0,0,0,.2),
+                0 4px 0 #4d0f0f,
+                0 6px 3px rgba(0,0,0,.22),
+                0 8px 22px rgba(127,29,29,.38);
+            text-shadow: 0 1px 2px rgba(0,0,0,.28);
+            animation: pulse-cta 2.5s ease-in-out infinite;
+            transition: transform .15s ease, box-shadow .15s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,.2),
+                inset 0 -2px 0 rgba(0,0,0,.2),
+                0 6px 0 #4d0f0f,
+                0 8px 5px rgba(0,0,0,.18),
+                0 12px 30px rgba(127,29,29,.52);
+        }
+
+        .cta-btn:active {
+            transform: translateY(2px);
+            box-shadow:
+                inset 0 2px 5px rgba(0,0,0,.28),
+                0 1px 0 #4d0f0f,
+                0 3px 10px rgba(127,29,29,.3);
+        }
+
+        @keyframes pulse-cta {
+            0%,100% { box-shadow:
+                inset 0 1px 0 rgba(255,255,255,.2),
+                inset 0 -2px 0 rgba(0,0,0,.2),
+                0 4px 0 #4d0f0f,
+                0 6px 3px rgba(0,0,0,.22),
+                0 8px 22px rgba(127,29,29,.35);
+            }
+            50% { box-shadow:
+                inset 0 1px 0 rgba(255,255,255,.2),
+                inset 0 -2px 0 rgba(0,0,0,.2),
+                0 4px 0 #4d0f0f,
+                0 6px 3px rgba(0,0,0,.22),
+                0 12px 34px rgba(127,29,29,.56);
+            }
+        }
+
+        /* ═══════════════════════════════════
+           LINK CARDS — realistic
+        ═══════════════════════════════════ */
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 11px;
+            position: relative;
+            z-index: 1;
+        }
 
         .link-card {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: linear-gradient(180deg,
+                rgba(255,255,255,.96) 0%,
+                rgba(253,246,240,.93) 100%
+            );
+            border: 1px solid rgba(201,165,94,.26);
+            border-top-color: rgba(255,255,255,.88);
+            border-radius: 16px;
+            padding: 13px 16px 13px 13px;
+            text-decoration: none;
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,.85),
+                0 2px 8px  rgba(60,30,10,.07),
+                0 1px 2px  rgba(60,30,10,.05);
+            transition: transform .18s ease, box-shadow .18s ease;
         }
+
         .link-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,.85),
+                0 7px 20px rgba(60,30,10,.11),
+                0 2px 4px  rgba(60,30,10,.07);
         }
-        .cta-pulse {
-            animation: pulse-shadow 2s infinite;
+
+        .link-card:active {
+            transform: translateY(0);
+            box-shadow:
+                inset 0 2px 4px rgba(0,0,0,.07),
+                0 1px 3px rgba(60,30,10,.05);
         }
-        @keyframes pulse-shadow {
-            0%, 100% { box-shadow: 0 4px 15px rgba(127, 29, 29, 0.3); }
-            50% { box-shadow: 0 4px 30px rgba(127, 29, 29, 0.5); }
+
+        .icon-wrap {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(145deg,
+                rgba(201,165,94,.18) 0%,
+                rgba(201,165,94,.07) 100%
+            );
+            border: 1px solid rgba(201,165,94,.2);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.55);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: #a87a28;
+        }
+
+        .link-text { flex: 1; }
+
+        .link-title {
+            font-size: 13.5px;
+            font-weight: 500;
+            color: var(--brown-dark);
+            letter-spacing: .01em;
+        }
+
+        .link-sub {
+            font-size: 11.5px;
+            font-weight: 300;
+            color: var(--brown-light);
+            margin-top: 2px;
+        }
+
+        .link-arrow { color: var(--gold); opacity: .7; }
+
+        /* ═══════════════════════════════════
+           FOOTER
+        ═══════════════════════════════════ */
+        .footer {
+            text-align: center;
+            margin-top: 46px;
+            font-size: 11px;
+            font-weight: 300;
+            color: #b09882;
+            position: relative;
+            z-index: 1;
         }
     </style>
 </head>
-<body class="bg-[#FAFAFA] text-slate-600 selection:bg-[#7f1d1d] selection:text-white min-h-screen">
+<body>
+<div class="page">
 
-    <div class="max-w-md mx-auto pb-12">
+    <!-- ══ Gold tracing — top-left ══ -->
+    <svg class="deco-corner" style="top:0;left:0;width:250px;height:270px;" viewBox="0 0 250 270" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="gTL1" x1="250" y1="0" x2="0" y2="270" gradientUnits="userSpaceOnUse">
+                <stop offset="0%"   stop-color="#c9a55e" stop-opacity="0"/>
+                <stop offset="35%"  stop-color="#c9a55e" stop-opacity="0.78"/>
+                <stop offset="100%" stop-color="#c9a55e" stop-opacity="0.18"/>
+            </linearGradient>
+            <linearGradient id="gTL2" x1="230" y1="0" x2="0" y2="250" gradientUnits="userSpaceOnUse">
+                <stop offset="0%"   stop-color="#c9a55e" stop-opacity="0"/>
+                <stop offset="50%"  stop-color="#c9a55e" stop-opacity="0.55"/>
+                <stop offset="100%" stop-color="#c9a55e" stop-opacity="0.1"/>
+            </linearGradient>
+        </defs>
+        <!-- Main sweep -->
+        <path d="M -15 255 C 15 208 58 158 105 112 C 142 75 182 48 220 24 C 234 15 244 7 250 0"
+              stroke="url(#gTL1)" stroke-width="1.5" fill="none"/>
+        <!-- Mid sweep -->
+        <path d="M -15 222 C 12 178 52 132 97 90 C 133 56 172 30 208 9 C 221 1 232 -4 242 -8"
+              stroke="url(#gTL2)" stroke-width="0.85" fill="none"/>
+        <!-- Fine sweeps -->
+        <path d="M -15 282 C 20 232 66 180 116 132 C 154 95 195 66 232 42"
+              stroke="#c9a55e" stroke-width="0.55" fill="none" opacity="0.32"/>
+        <path d="M -15 190 C 8 150 44 110 86 74 C 118 47 155 26 188 10"
+              stroke="#c9a55e" stroke-width="0.4"  fill="none" opacity="0.22"/>
+        <!-- Terminal accents -->
+        <circle cx="247" cy="3"  r="2.4" fill="#c9a55e" opacity="0.58"/>
+        <circle cx="238" cy="-4" r="1.5" fill="#c9a55e" opacity="0.36"/>
+        <circle cx="224" cy="26" r="1.2" fill="#c9a55e" opacity="0.28"/>
+    </svg>
 
-        <!-- Banner -->
-        <div class="relative h-48 bg-gradient-to-br from-[#7f1d1d] to-[#991b1b] overflow-hidden">
-            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#d97706]/20 via-transparent to-transparent"></div>
-            <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#FAFAFA] to-transparent"></div>
+    <!-- ══ Gold tracing — bottom-right ══ -->
+    <svg class="deco-corner" style="bottom:0;right:0;width:250px;height:270px;" viewBox="0 0 250 270" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="gBR1" x1="0" y1="270" x2="250" y2="0" gradientUnits="userSpaceOnUse">
+                <stop offset="0%"   stop-color="#c9a55e" stop-opacity="0"/>
+                <stop offset="35%"  stop-color="#c9a55e" stop-opacity="0.78"/>
+                <stop offset="100%" stop-color="#c9a55e" stop-opacity="0.18"/>
+            </linearGradient>
+            <linearGradient id="gBR2" x1="20" y1="270" x2="250" y2="20" gradientUnits="userSpaceOnUse">
+                <stop offset="0%"   stop-color="#c9a55e" stop-opacity="0"/>
+                <stop offset="50%"  stop-color="#c9a55e" stop-opacity="0.55"/>
+                <stop offset="100%" stop-color="#c9a55e" stop-opacity="0.1"/>
+            </linearGradient>
+        </defs>
+        <path d="M 265 15 C 235 62 192 112 145 158 C 108 195 68 222 30 246 C 16 255 6 263 0 270"
+              stroke="url(#gBR1)" stroke-width="1.5" fill="none"/>
+        <path d="M 265 48 C 238 92 198 138 153 180 C 117 214 78 238 42 258 C 29 265 19 270 8 274"
+              stroke="url(#gBR2)" stroke-width="0.85" fill="none"/>
+        <path d="M 265 -12 C 230 38 184 88 134 138 C 96 175 55 202 18 228"
+              stroke="#c9a55e" stroke-width="0.55" fill="none" opacity="0.32"/>
+        <path d="M 265 82 C 242 120 208 158 168 190 C 136 215 98 236 62 252"
+              stroke="#c9a55e" stroke-width="0.4"  fill="none" opacity="0.22"/>
+        <circle cx="3"  cy="267" r="2.4" fill="#c9a55e" opacity="0.58"/>
+        <circle cx="12" cy="274" r="1.5" fill="#c9a55e" opacity="0.36"/>
+        <circle cx="26" cy="244" r="1.2" fill="#c9a55e" opacity="0.28"/>
+    </svg>
+
+    <!-- ══ HEADER: photo centered + logo right ══ -->
+    <div class="header-area">
+        <div class="photo-wrap">
+            <img src="nadir.png" alt="Psicóloga Nadir">
         </div>
+        <div class="logo-block">
+            <img src="logo-vertical.png" alt="Logo CAPI">
+        </div>
+    </div>
 
-        <!-- Foto de Perfil -->
-        <div class="relative -mt-16 flex flex-col items-center px-6">
-            <div class="w-36 h-36 rounded-full border-4 border-white shadow-lg bg-white flex items-center justify-center overflow-hidden">
-                <!-- Substitua pelo src da foto de perfil -->
-                <img src="isolado-colorido.png" alt="CAPI Logo" class="w-[120%] h-[120%] object-contain scale-125">
+    <!-- ══ TITLE + TAGLINE ══ -->
+    <div class="title-section">
+        <h1 class="main-title">Centro de Avaliação<br>Psicológica Interlagos</h1>
+        <div class="ornament">
+            <div class="orn-line-l"></div>
+            <div class="orn-center">
+                <div class="orn-dot"></div>
+                <div class="orn-diamond"></div>
+                <div class="orn-dot"></div>
             </div>
-
-            <!-- Nome e Descrição -->
-            <h1 class="mt-4 text-2xl font-serif font-semibold text-slate-900 text-center">Centro de Avaliação Psicológica Interlagos</h1>
-            <p class="text-sm text-slate-500 text-center mt-1 max-w-xs leading-relaxed">
-                Saúde mental integrada na zona sul de SP.
-            </p>
+            <div class="orn-line-r"></div>
         </div>
+        <p class="tagline">Diagnóstico preciso &bull; Cuidado humanizado</p>
+    </div>
 
-        <!-- CTA Principal -->
-        <div class="px-6 mt-8">
-            <a href="https://api.whatsapp.com/send/?phone=5511985593454&text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta.&type=phone_number&app_absent=0"
-               class="cta-pulse link-card flex items-center justify-center gap-3 w-full py-4 px-6 bg-[#7f1d1d] text-white font-semibold text-base rounded-2xl hover:bg-[#991b1b] transition-colors">
-                <iconify-icon icon="solar:calendar-bold" width="22"></iconify-icon>
-                Agendar Consulta
-            </a>
+    <!-- ══ DIVIDER ══ -->
+    <div class="ornament section-divider">
+        <div class="orn-line-l"></div>
+        <div class="orn-center">
+            <div class="orn-dot"></div>
+            <div class="orn-diamond"></div>
+            <div class="orn-dot"></div>
         </div>
+        <div class="orn-line-r"></div>
+    </div>
 
-        <!-- Links -->
-        <div class="px-6 mt-4 flex flex-col gap-3">
+    <!-- ══ CTA ══ -->
+    <a href="https://api.whatsapp.com/send/?phone=5511985593454&text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta.&type=phone_number&app_absent=0"
+       class="cta-btn">
+        <iconify-icon icon="solar:calendar-bold" width="20"></iconify-icon>
+        Agendar Consulta
+    </a>
 
-            <!-- WhatsApp -->
-            <a href="https://api.whatsapp.com/send/?phone=5511985593454&text&type=phone_number&app_absent=0"
-               class="link-card flex items-center gap-4 w-full py-4 px-6 bg-white border border-slate-200 rounded-2xl shadow-sm">
-                <div class="w-10 h-10 rounded-xl bg-[#25D366]/10 flex items-center justify-center flex-shrink-0">
-                    <iconify-icon icon="mdi:whatsapp" class="text-[#25D366]" width="24"></iconify-icon>
-                </div>
-                <div class="flex-1">
-                    <p class="text-sm font-semibold text-slate-800">WhatsApp</p>
-                    <p class="text-xs text-slate-400">Fale conosco diretamente</p>
-                </div>
-                <iconify-icon icon="solar:arrow-right-linear" class="text-slate-300" width="18"></iconify-icon>
-            </a>
+    <!-- ══ LINK CARDS ══ -->
+    <div class="links">
 
-            <!-- Instagram
-            <a href="#"
-               class="link-card flex items-center gap-4 w-full py-4 px-6 bg-white border border-slate-200 rounded-2xl shadow-sm">
-                <div class="w-10 h-10 rounded-xl bg-[#E1306C]/10 flex items-center justify-center flex-shrink-0">
-                    <iconify-icon icon="mdi:instagram" class="text-[#E1306C]" width="24"></iconify-icon>
-                </div>
-                <div class="flex-1">
-                    <p class="text-sm font-semibold text-slate-800">Instagram</p>
-                    <p class="text-xs text-slate-400">Acompanhe nosso conteúdo</p>
-                </div>
-                <iconify-icon icon="solar:arrow-right-linear" class="text-slate-300" width="18"></iconify-icon>
-            </a> -->
+        <a href="https://api.whatsapp.com/send/?phone=5511985593454&text&type=phone_number&app_absent=0"
+           class="link-card">
+            <div class="icon-wrap">
+                <iconify-icon icon="mdi:whatsapp" width="22"></iconify-icon>
+            </div>
+            <div class="link-text">
+                <p class="link-title">WhatsApp</p>
+                <p class="link-sub">Fale conosco diretamente</p>
+            </div>
+            <iconify-icon icon="solar:arrow-right-linear" class="link-arrow" width="16"></iconify-icon>
+        </a>
 
-            <!-- Site -->
-            <a href="https://centro-avaliacao-lp.vercel.app/"
-               class="link-card flex items-center gap-4 w-full py-4 px-6 bg-white border border-slate-200 rounded-2xl shadow-sm">
-                <div class="w-10 h-10 rounded-xl bg-[#7f1d1d]/10 flex items-center justify-center flex-shrink-0">
-                    <iconify-icon icon="mdi:web" class="text-[#7f1d1d]" width="24"></iconify-icon>
-                </div>
-                <div class="flex-1">
-                    <p class="text-sm font-semibold text-slate-800">Nosso Site</p>
-                    <p class="text-xs text-slate-400">Conheça nossos serviços</p>
-                </div>
-                <iconify-icon icon="solar:arrow-right-linear" class="text-slate-300" width="18"></iconify-icon>
-            </a>
+        <a href="https://centro-avaliacao-lp.vercel.app/"
+           class="link-card">
+            <div class="icon-wrap">
+                <iconify-icon icon="mdi:web" width="22"></iconify-icon>
+            </div>
+            <div class="link-text">
+                <p class="link-title">Nosso Site</p>
+                <p class="link-sub">Conheça nossos serviços</p>
+            </div>
+            <iconify-icon icon="solar:arrow-right-linear" class="link-arrow" width="16"></iconify-icon>
+        </a>
 
-            <!-- Localização -->
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Av.+Nossa+Senhora+do+Sabar%C3%A1,+2313,+S%C3%A3o+Paulo+-+SP"
-               class="link-card flex items-center gap-4 w-full py-4 px-6 bg-white border border-slate-200 rounded-2xl shadow-sm">
-                <div class="w-10 h-10 rounded-xl bg-[#d97706]/10 flex items-center justify-center flex-shrink-0">
-                    <iconify-icon icon="solar:map-point-linear" class="text-[#d97706]" width="24"></iconify-icon>
-                </div>
-                <div class="flex-1">
-                    <p class="text-sm font-semibold text-slate-800">Localização</p>
-                    <p class="text-xs text-slate-400">Zona Sul — São Paulo, SP</p>
-                </div>
-                <iconify-icon icon="solar:arrow-right-linear" class="text-slate-300" width="18"></iconify-icon>
-            </a>
-
-        </div>
-
-        <!-- Footer -->
-        <div class="mt-10 text-center">
-            <p class="text-xs text-slate-400">&copy; 2026 CAPI — Centro de Avaliação Psicológica Interlagos</p>
-        </div>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Av.+Nossa+Senhora+do+Sabar%C3%A1,+2313,+S%C3%A3o+Paulo+-+SP"
+           class="link-card">
+            <div class="icon-wrap">
+                <iconify-icon icon="solar:map-point-linear" width="22"></iconify-icon>
+            </div>
+            <div class="link-text">
+                <p class="link-title">Localização</p>
+                <p class="link-sub">Zona Sul — São Paulo, SP</p>
+            </div>
+            <iconify-icon icon="solar:arrow-right-linear" class="link-arrow" width="16"></iconify-icon>
+        </a>
 
     </div>
 
+    <!-- ══ FOOTER ══ -->
+    <p class="footer">&copy; 2026 CAPI — Centro de Avaliação Psicológica Interlagos</p>
+
+</div>
 </body>
 </html>
